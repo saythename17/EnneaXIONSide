@@ -12,10 +12,10 @@ port = 8888
   [functions."*"]
 
 [build]
-publish = "/opt/build/repo/dist/client"
+command = "npm run build"
+publish = "dist"
 publishOrigin = "config"
 commandOrigin = "config"
-command = "vite build"
 
   [build.environment]
 
