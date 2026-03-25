@@ -1,0 +1,1416 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>에니어그램 Self-Master 코칭 | 에니어시온</title>
+<link rel="icon" type="image/png" href="/favicon.png">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@300;400;600;700;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+:root {
+  --ink: #1a1410;
+  --ink2: #3d3128;
+  --ink3: #7a6a5a;
+  --ink4: #b0a090;
+  --paper: #faf8f4;
+  --paper2: #f2ede4;
+  --paper3: #e8dfd0;
+  --gold: #b8922a;
+  --gold2: #d4a843;
+  --gold3: #f0c96e;
+  --gold-light: #fdf3dc;
+  --red: #8b2020;
+  --red-light: #fdf0f0;
+  --teal: #1a6b5a;
+  --teal-light: #e8f5f1;
+  --border: rgba(26,20,16,0.1);
+  --border2: rgba(26,20,16,0.18);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+/* ── STICKY NAV ── */
+.sticky-cta {
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--ink);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 100;
+  box-shadow: 0 -4px 30px rgba(0,0,0,0.3);
+}
+.sticky-cta-text { color: rgba(255,255,255,0.8); font-size: 13px; }
+.sticky-cta-text strong { color: var(--gold3); }
+.sticky-btn {
+  background: var(--gold2);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 14px;
+  padding: 12px 28px;
+  border-radius: 4px;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+.sticky-btn:hover { background: var(--gold3); }
+
+/* ── ANNOUNCEMENT BAR ── */
+.announce {
+  background: var(--ink);
+  color: var(--gold3);
+  text-align: center;
+  padding: 10px 20px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+.announce span { color: rgba(255,255,255,0.7); margin: 0 8px; }
+
+/* ── HERO ── */
+.hero {
+  background: var(--ink);
+  color: white;
+  padding: 80px 40px 100px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(184,146,42,0.18) 0%, transparent 60%);
+}
+.hero-badge {
+  display: inline-block;
+  border: 1px solid rgba(240,201,110,0.4);
+  color: var(--gold3);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 18px;
+  border-radius: 2px;
+  margin-bottom: 32px;
+}
+.hero h1 {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--gold3);
+}
+.hero-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  max-width: 480px;
+  margin: 0 auto 48px;
+  line-height: 1.9;
+}
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: 6px;
+  overflow: hidden;
+  max-width: 560px;
+  margin: 0 auto 48px;
+}
+.hs {
+  flex: 1;
+  padding: 20px 16px;
+  border-right: 1px solid rgba(255,255,255,0.12);
+  text-align: center;
+}
+.hs:last-child { border-right: none; }
+.hs-num {
+  font-size: 26px;
+  font-weight: 900;
+  color: var(--gold3);
+  font-family: 'Noto Serif KR', serif;
+  display: block;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.hs-label {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  letter-spacing: 0.06em;
+}
+.hero-cta {
+  display: inline-block;
+  background: var(--gold2);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 17px;
+  padding: 18px 48px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 24px rgba(184,146,42,0.4);
+}
+.hero-cta:hover { background: var(--gold3); transform: translateY(-2px); }
+.hero-cta-sub {
+  display: block;
+  color: rgba(255,255,255,0.4);
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+/* ── PROOF BAR ── */
+.proof-bar {
+  background: var(--gold-light);
+  border-top: 1px solid rgba(184,146,42,0.2);
+  border-bottom: 1px solid rgba(184,146,42,0.2);
+  padding: 20px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.pb-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--ink2);
+  font-weight: 500;
+}
+.pb-icon { color: var(--gold); font-size: 14px; }
+.pb-sep { color: var(--ink4); font-size: 20px; }
+
+/* ── SECTION WRAPPER ── */
+.wrap { max-width: 760px; margin: 0 auto; padding: 0 32px; }
+.wrap-wide { max-width: 980px; margin: 0 auto; padding: 0 32px; }
+
+/* ── SECTION STYLES ── */
+.sec { padding: 80px 0; }
+.sec-eye {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+.sec-h {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 34px;
+  font-weight: 700;
+  line-height: 1.35;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  color: var(--ink);
+}
+.sec-h em { font-style: normal; color: var(--gold); }
+.sec-desc {
+  font-size: 16px;
+  color: var(--ink3);
+  line-height: 1.95;
+  margin-bottom: 40px;
+}
+.divider { height: 1px; background: var(--border); margin: 0; }
+
+/* ── PROBLEM SECTION ── */
+.problem-sec { background: var(--paper); }
+.problem-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.pc {
+  background: white;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--ink3);
+  padding: 20px 22px;
+  border-radius: 2px;
+}
+.pc-quote {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.8;
+  margin-bottom: 8px;
+}
+.pc-quote::before { content: '"'; color: var(--ink4); }
+.pc-quote::after { content: '"'; color: var(--ink4); }
+.pc-tag {
+  font-size: 11px;
+  color: var(--ink4);
+}
+.problem-insight {
+  background: var(--ink);
+  color: white;
+  padding: 28px 32px;
+  border-radius: 4px;
+}
+.pi-label { font-size: 11px; color: var(--gold3); letter-spacing: 0.1em; margin-bottom: 10px; }
+.pi-text {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 19px;
+  line-height: 1.7;
+}
+.pi-text strong { color: var(--gold3); }
+
+/* ── STORY SECTION ── */
+.story-sec { background: var(--paper2); }
+.story-blocks { display: flex; flex-direction: column; gap: 0; }
+.story-block {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 0;
+  border-bottom: 1px solid var(--border);
+  padding: 32px 0;
+}
+.story-block:last-child { border-bottom: none; }
+.sb-num {
+  font-family: 'Noto Serif KR', serif;
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--paper3);
+  line-height: 1;
+  padding-top: 4px;
+  user-select: none;
+}
+.sb-content {}
+.sb-persona {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 700;
+  background: var(--paper3);
+  color: var(--ink2);
+  padding: 3px 10px;
+  border-radius: 2px;
+  margin-bottom: 12px;
+  letter-spacing: 0.06em;
+}
+.sb-story {
+  font-size: 15px;
+  color: var(--ink2);
+  line-height: 2;
+}
+.sb-pain {
+  margin-top: 12px;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 15px;
+  color: var(--ink);
+  border-left: 3px solid var(--gold);
+  padding-left: 16px;
+  line-height: 1.85;
+}
+
+/* ── SOLUTION SECTION ── */
+.solution-sec { background: white; }
+.sol-fail {
+  background: var(--red-light);
+  border: 1px solid rgba(139,32,32,0.15);
+  padding: 24px 28px;
+  border-radius: 4px;
+  margin-bottom: 32px;
+}
+.sf-title { font-weight: 700; color: var(--red); font-size: 14px; margin-bottom: 12px; }
+.sf-items { display: flex; flex-direction: column; gap: 8px; }
+.sf-item { display: flex; gap: 10px; font-size: 14px; color: var(--ink2); line-height: 1.6; }
+.sf-x { color: var(--red); font-weight: 700; flex-shrink: 0; }
+.sol-answer {
+  background: var(--teal-light);
+  border: 1px solid rgba(26,107,90,0.2);
+  border-left: 4px solid var(--teal);
+  padding: 24px 28px;
+  border-radius: 0 4px 4px 0;
+  margin-bottom: 40px;
+}
+.sa-title { font-weight: 700; color: var(--teal); font-size: 14px; margin-bottom: 10px; }
+.sa-text { font-size: 15px; color: var(--ink2); line-height: 1.95; }
+.sol-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.sol-step {
+  display: grid;
+  grid-template-columns: 56px 1fr;
+  border-bottom: 1px solid var(--border);
+}
+.sol-step:last-child { border-bottom: none; }
+.ss-num {
+  background: var(--ink);
+  color: var(--gold3);
+  font-family: 'Noto Serif KR', serif;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.ss-body { padding: 18px 22px; }
+.ss-title { font-weight: 700; font-size: 14px; color: var(--ink); margin-bottom: 4px; }
+.ss-desc { font-size: 13px; color: var(--ink3); line-height: 1.7; }
+
+/* ── VALUE SECTION ── */
+.value-sec { background: var(--ink); color: white; }
+.value-sec .sec-h { color: white; }
+.value-sec .sec-desc { color: rgba(255,255,255,0.6); }
+.val-compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.vc {
+  padding: 28px;
+  border-radius: 4px;
+}
+.vc.before {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+.vc.after {
+  background: rgba(184,146,42,0.12);
+  border: 1px solid rgba(240,201,110,0.25);
+}
+.vc-label { font-size: 11px; letter-spacing: 0.12em; font-weight: 700; margin-bottom: 16px; }
+.vc.before .vc-label { color: rgba(255,255,255,0.4); }
+.vc.after .vc-label { color: var(--gold3); }
+.vc-item { display: flex; gap: 10px; font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
+.vc.before .vc-item { color: rgba(255,255,255,0.5); }
+.vc.after .vc-item { color: rgba(255,255,255,0.9); }
+.vc-dot { flex-shrink: 0; padding-top: 2px; }
+.val-stack {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.vs-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 24px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.vs-row:last-child { border-bottom: none; }
+.vs-row.total { background: rgba(184,146,42,0.12); }
+.vs-name { font-size: 14px; color: rgba(255,255,255,0.8); }
+.vs-price { font-size: 14px; font-weight: 700; color: var(--gold3); }
+.vs-row.total .vs-name { font-weight: 700; color: white; font-size: 15px; }
+.vs-row.total .vs-price { font-size: 18px; }
+
+/* ── PROGRAM DETAILS ── */
+.program-sec { background: var(--paper); }
+.prog-info {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 40px;
+}
+.pi {
+  background: white;
+  border: 1px solid var(--border);
+  padding: 20px 22px;
+  border-radius: 2px;
+}
+.pi-key { font-size: 11px; font-weight: 700; color: var(--ink4); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 6px; }
+.pi-val { font-size: 15px; font-weight: 600; color: var(--ink); line-height: 1.5; }
+.pi-val em { font-style: normal; color: var(--gold); font-size: 14px; }
+.curriculum {
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.curr-row {
+  display: grid;
+  grid-template-columns: 90px 1fr;
+  border-bottom: 1px solid var(--border);
+}
+.curr-row:last-child { border-bottom: none; }
+.curr-num {
+  background: var(--paper2);
+  padding: 16px;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink3);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+.curr-nth { font-size: 10px; color: var(--ink4); }
+.curr-body { padding: 16px 20px; }
+.curr-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 3px; }
+.curr-desc { font-size: 12px; color: var(--ink3); line-height: 1.6; }
+
+/* ── SCARCITY ── */
+.scarcity-sec { background: var(--paper2); }
+.scar-box {
+  background: white;
+  border: 2px solid var(--gold);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.scar-head {
+  background: var(--gold);
+  padding: 14px 24px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.scar-head-text {
+  font-weight: 800;
+  font-size: 14px;
+  color: var(--ink);
+}
+.scar-body { padding: 28px; }
+.spots-row {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  margin-bottom: 24px;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+}
+.spot {
+  flex: 1;
+  text-align: center;
+  padding: 16px 8px;
+  border-right: 1px solid var(--border);
+  font-size: 12px;
+}
+.spot:last-child { border-right: none; }
+.spot.taken { background: var(--paper2); }
+.spot.open { background: white; }
+.spot-label { color: var(--ink4); margin-bottom: 4px; font-size: 10px; }
+.spot-val { font-weight: 800; font-size: 16px; }
+.spot.taken .spot-val { color: var(--ink3); }
+.spot.open .spot-val { color: var(--teal); }
+.scar-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+.si {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  color: var(--ink2);
+  line-height: 1.65;
+  align-items: flex-start;
+}
+.si-icon { flex-shrink: 0; margin-top: 2px; }
+.scar-deadline {
+  background: var(--ink);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 3px;
+  text-align: center;
+  font-size: 14px;
+}
+.scar-deadline strong { color: var(--gold3); }
+
+/* ── TESTIMONIALS ── */
+.testi-sec { background: white; }
+.testi-grid { display: flex; flex-direction: column; gap: 20px; }
+.testi {
+  background: var(--paper);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 28px 32px;
+  position: relative;
+}
+.testi::before {
+  content: '"';
+  position: absolute;
+  top: 12px; left: 20px;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 60px;
+  color: var(--paper3);
+  line-height: 1;
+}
+.testi-text {
+  font-size: 15px;
+  color: var(--ink2);
+  line-height: 2;
+  margin-bottom: 16px;
+  padding-top: 8px;
+}
+.testi-text strong { color: var(--ink); }
+.testi-meta { display: flex; align-items: center; gap: 12px; }
+.testi-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--paper3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--ink3);
+  flex-shrink: 0;
+}
+.testi-name { font-size: 13px; font-weight: 600; color: var(--ink2); }
+.testi-cohort { font-size: 11px; color: var(--ink4); margin-top: 1px; }
+.stars { color: var(--gold); font-size: 12px; letter-spacing: 1px; }
+
+/* ── INSTRUCTOR ── */
+.instructor-sec { background: var(--paper2); }
+.instr-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 36px;
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 32px;
+  align-items: start;
+}
+.instr-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  background: var(--paper3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Noto Serif KR', serif;
+  font-size: 36px;
+  color: var(--ink3);
+  flex-shrink: 0;
+}
+.instr-name { font-family: 'Noto Serif KR', serif; font-size: 22px; font-weight: 700; margin-bottom: 4px; }
+.instr-title { font-size: 13px; color: var(--gold); font-weight: 600; margin-bottom: 16px; }
+.instr-creds { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.ic { display: flex; gap: 8px; font-size: 13px; color: var(--ink2); align-items: flex-start; line-height: 1.6; }
+.ic-dot { color: var(--gold); flex-shrink: 0; }
+.instr-bio { font-size: 14px; color: var(--ink3); line-height: 1.95; }
+
+/* ── SCHEDULE ── */
+.schedule-sec { background: var(--paper); }
+.schedule-box {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 24px;
+}
+.sch-head {
+  background: var(--ink);
+  color: white;
+  padding: 14px 22px;
+  font-size: 14px;
+  font-weight: 700;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.sch-badge {
+  font-size: 10px;
+  padding: 3px 10px;
+  border-radius: 2px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+.sch-badge.open { background: rgba(46,207,172,0.2); color: #5de8cc; }
+.sch-badge.closed { background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.4); }
+.sch-sessions {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+}
+.sch-s {
+  padding: 16px 14px;
+  border-right: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  text-align: center;
+}
+.sch-s:nth-child(4n) { border-right: none; }
+.sch-s:nth-child(5), .sch-s:nth-child(6), .sch-s:nth-child(7), .sch-s:nth-child(8) { border-bottom: none; }
+.sch-s-n { font-size: 10px; color: var(--ink4); margin-bottom: 4px; }
+.sch-s-date { font-size: 14px; font-weight: 700; color: var(--ink); }
+.sch-s-time { font-size: 11px; color: var(--ink4); margin-top: 2px; }
+
+/* ── CTA SECTION ── */
+.cta-sec {
+  background: var(--ink);
+  color: white;
+  padding: 100px 40px;
+  text-align: center;
+}
+.cta-sec .sec-h { color: white; max-width: 600px; margin: 0 auto 16px; }
+.cta-sub { font-size: 16px; color: rgba(255,255,255,0.5); margin-bottom: 48px; }
+.cta-price-box {
+  display: inline-block;
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 6px;
+  padding: 28px 48px;
+  margin-bottom: 32px;
+}
+.cta-orig { font-size: 14px; color: rgba(255,255,255,0.3); text-decoration: line-through; margin-bottom: 4px; }
+.cta-price { font-family: 'Noto Serif KR', serif; font-size: 40px; font-weight: 700; color: var(--gold3); }
+.cta-per { font-size: 14px; color: rgba(255,255,255,0.4); margin-top: 4px; }
+.cta-btn {
+  display: block;
+  background: var(--gold2);
+  color: var(--ink);
+  font-weight: 800;
+  font-size: 18px;
+  padding: 20px 60px;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 0.2s;
+  max-width: 360px;
+  margin: 0 auto 16px;
+  box-shadow: 0 8px 32px rgba(184,146,42,0.35);
+}
+.cta-btn:hover { background: var(--gold3); transform: translateY(-2px); }
+.cta-btn-sub { font-size: 13px; color: rgba(255,255,255,0.35); margin-bottom: 40px; }
+.cta-guarantees {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  flex-wrap: wrap;
+}
+.cg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.45);
+}
+.cg-icon { color: var(--gold3); }
+
+/* ── FAQ ── */
+.faq-sec { background: var(--paper2); }
+.faq-items { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+.faq-item { border-bottom: 1px solid var(--border); }
+.faq-item:last-child { border-bottom: none; }
+.faq-q {
+  padding: 20px 24px;
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--ink);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: white;
+  transition: background 0.15s;
+}
+.faq-q:hover { background: var(--paper); }
+.faq-q-text {}
+.faq-toggle { color: var(--gold); font-size: 18px; flex-shrink: 0; transition: transform 0.2s; }
+.faq-a {
+  display: none;
+  padding: 0 24px 20px;
+  font-size: 14px;
+  color: var(--ink3);
+  line-height: 1.9;
+  background: white;
+}
+.faq-item.open .faq-a { display: block; }
+.faq-item.open .faq-toggle { transform: rotate(45deg); }
+
+/* ── FOOTER ── */
+footer {
+  background: var(--ink);
+  color: rgba(255,255,255,0.35);
+  text-align: center;
+  padding: 32px 24px 80px;
+  font-size: 12px;
+  line-height: 1.9;
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .hero h1 { font-size: 32px; }
+  .hero { padding: 60px 24px 80px; }
+  .problem-cards { grid-template-columns: 1fr; }
+  .val-compare { grid-template-columns: 1fr; }
+  .prog-info { grid-template-columns: 1fr; }
+  .instr-card { grid-template-columns: 1fr; }
+  .sch-sessions { grid-template-columns: 1fr 1fr; }
+  .sch-s:nth-child(2n) { border-right: none; }
+  .sch-s:nth-child(7), .sch-s:nth-child(8) { border-bottom: none; }
+  .sch-s:nth-child(5) { border-bottom: 1px solid var(--border); }
+  .sch-s:nth-child(6) { border-bottom: 1px solid var(--border); }
+  .hero-stats { flex-direction: column; }
+  .hs { border-right: none; border-bottom: 1px solid rgba(255,255,255,0.12); }
+  .hs:last-child { border-bottom: none; }
+  .sticky-cta-text { display: none; }
+  .proof-bar { gap: 20px; padding: 16px 24px; }
+  .pb-sep { display: none; }
+  .cta-price { font-size: 30px; }
+  .cta-btn { padding: 18px 32px; font-size: 16px; }
+  .wrap, .wrap-wide { padding: 0 20px; }
+}
+</style>
+</head>
+<body>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta">
+  <div class="sticky-cta-text">3기 모집 중 · <strong>잔여 4석</strong> — 5월 23일 마감</div>
+  <a href="https://open.kakao.com/o/sT48fqrh" class="sticky-btn">지금 신청하기 →</a>
+</div>
+
+<!-- ANNOUNCE -->
+<div class="announce">
+  🔔 3기 8석 중 <strong style="color:white;">4석 마감</strong> <span>|</span> 다음 기수는 2026년 이후 예정 <span>|</span> 이번이 마지막 기회일 수 있습니다
+</div>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<section class="hero">
+  <div class="hero-badge">에니어그램 Self-Master 코칭 · 3기 모집</div>
+  <h1>관계가 힘든 건<br><em>대화가 부족해서</em>가 아닙니다</h1>
+  <p class="hero-sub">나와 상대를 이해하는 언어가 없기 때문입니다.<br>에니어그램으로 당신의 관계를 설계하세요.</p>
+
+  <div class="hero-stats">
+    <div class="hs">
+      <span class="hs-num">2기</span>
+      <span class="hs-label">누적 수료</span>
+    </div>
+    <div class="hs">
+      <span class="hs-num">15년</span>
+      <span class="hs-label">에니어그램 연구</span>
+    </div>
+    <div class="hs">
+      <span class="hs-num">6인</span>
+      <span class="hs-label">소수정예 정원</span>
+    </div>
+    <div class="hs">
+      <span class="hs-num">8회</span>
+      <span class="hs-label">월 1회 8개월</span>
+    </div>
+  </div>
+
+  <a href="https://open.kakao.com/o/sT48fqrh" class="hero-cta">3기 신청하기 (잔여 4석)</a>
+  <span class="hero-cta-sub">오픈카톡 문의 후 결제 · 80만원 / 8회 · 환불정책 있음</span>
+</section>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="pb-item"><span class="pb-icon">✓</span> 한국에니어그램협회 공인 강사</div>
+  <span class="pb-sep">·</span>
+  <div class="pb-item"><span class="pb-icon">✓</span> 에니어그램 관련 논문·서적 다수 섭렵</div>
+  <span class="pb-sep">·</span>
+  <div class="pb-item"><span class="pb-icon">✓</span> 홍대 오프라인 소수정예 진행</div>
+  <span class="pb-sep">·</span>
+  <div class="pb-item"><span class="pb-icon">✓</span> 1기·2기 전원 수료</div>
+</div>
+
+<!-- ══════════════════════════ PROBLEM ══════════════════════════ -->
+<section class="sec problem-sec">
+  <div class="wrap">
+    <p class="sec-eye">당신의 이야기인가요?</p>
+    <h2 class="sec-h">혹시 이런 생각,<br>해보신 적 있나요?</h2>
+
+    <div class="problem-cards">
+      <div class="pc">
+        <p class="pc-quote">나는 분명히 잘하고 싶은데, 왜 자꾸 같은 패턴으로 싸우게 될까</p>
+        <span class="pc-tag">→ 연인·배우자와의 반복 갈등</span>
+      </div>
+      <div class="pc">
+        <p class="pc-quote">저 사람이 왜 저런 행동을 하는지 도저히 이해가 안 돼</p>
+        <span class="pc-tag">→ 직장 동료·상사와의 관계</span>
+      </div>
+      <div class="pc">
+        <p class="pc-quote">나만 상처받고 있는 건지, 아니면 내가 예민한 건지 모르겠어</p>
+        <span class="pc-tag">→ 자기 감정을 믿지 못하는 상태</span>
+      </div>
+      <div class="pc">
+        <p class="pc-quote">분명 열심히 하는데, 왜 사람들이 나를 오해하는 걸까</p>
+        <span class="pc-tag">→ 리더·팀장·창업가</span>
+      </div>
+    </div>
+
+    <div class="problem-insight">
+      <p class="pi-label">핵심 인사이트</p>
+      <p class="pi-text">이 모든 문제의 공통점은 하나입니다.<br><strong>대화가 부족한 게 아니라, 상대를 이해하는 언어가 없는 것입니다.</strong><br>에니어그램은 그 언어를 당신에게 줍니다.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ══════════════════════════ STORY ══════════════════════════ -->
+<section class="sec story-sec">
+  <div class="wrap">
+    <p class="sec-eye">수료자 스토리</p>
+    <h2 class="sec-h">코칭을 통해<br>무엇이 달라졌을까요</h2>
+    <p class="sec-desc">실제 참여자들이 코칭 전후 경험한 변화입니다. 성과는 각자 다르지만, 공통적으로 "나를 이해하게 됐다"는 말을 남겼습니다.</p>
+
+    <div class="story-blocks">
+
+      <div class="story-block">
+        <div class="sb-num">01</div>
+        <div class="sb-content">
+          <span class="sb-persona">30대 직장인 · 팀장</span>
+          <p class="sb-story">팀원들이 왜 말을 안 듣는지 이해할 수 없었습니다. 분명 논리적으로 설명하고 피드백도 주는데, 오히려 분위기가 더 나빠지는 느낌이었죠. '내가 리더십이 없는 건가?' 싶어서 리더십 책도 읽어보고 강의도 들었는데 별 변화가 없었어요.</p>
+          <p class="sb-pain">에니어그램을 통해 제가 5번 유형이라는 걸 알게 됐습니다. 감정보다 논리를 앞세우는 게 제 기본값이었고, 팀원들 대부분은 감정 중심으로 동기부여가 되는 유형이었어요. 같은 말도 다르게 전해야 한다는 걸 처음으로 이해했습니다. 지금은 1:1 미팅 방식이 완전히 바뀌었고, 팀 분위기도 많이 달라졌어요.</p>
+        </div>
+      </div>
+
+      <div class="story-block">
+        <div class="sb-num">02</div>
+        <div class="sb-content">
+          <span class="sb-persona">20대 후반 · 자영업자 / 연인 관계</span>
+          <p class="sb-story">남자친구와 사소한 것에서 항상 싸웠습니다. 그가 무언가를 말 안 하고 행동으로 표현하는 걸 저는 도저히 읽지 못했고, 저는 말로 표현하는데 그는 "왜 이렇게 말이 많냐"고 했어요. 서로 다른 언어를 쓰는 느낌이었습니다.</p>
+          <p class="sb-pain">코칭에서 우리 둘의 유형을 각각 이해하고 나서, 처음으로 '아, 저 사람이 나쁜 게 아니라 원래 그런 방식으로 작동하는 거구나'를 받아들이게 됐어요. 지금도 다투긴 하지만, 예전처럼 감정이 폭발하지 않아요. 싸우다가도 "지금 나 몇 번처럼 반응하고 있네" 하고 웃을 수 있게 됐거든요.</p>
+        </div>
+      </div>
+
+      <div class="story-block">
+        <div class="sb-num">03</div>
+        <div class="sb-content">
+          <span class="sb-persona">30대 초반 · 프리랜서 / 자기 이해</span>
+          <p class="sb-story">제가 왜 이렇게 살고 있는지 몰랐어요. 열심히는 하는데 늘 소진되는 느낌. 사람들이랑 같이 있으면 힘들고, 혼자 있으면 외롭고. 내가 원하는 게 뭔지도 모르겠고, 그냥 흘러가는 대로 살고 있었어요.</p>
+          <p class="sb-pain">4회차 세션에서 '어린 나에게 편지쓰기' 액티비티를 할 때 처음으로 소리 내어 울었습니다. 제가 어릴 때부터 왜 그런 패턴으로 살아왔는지가 보였거든요. 무서웠지만, 동시에 엄청나게 홀가분했습니다. 지금은 제 기준으로 결정을 내릴 수 있게 됐어요.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ SOLUTION ══════════════════════════ -->
+<section class="sec solution-sec">
+  <div class="wrap">
+    <p class="sec-eye">왜 에니어그램인가</p>
+    <h2 class="sec-h">기존 방법들이<br>효과 없었던 이유</h2>
+
+    <div class="sol-fail">
+      <p class="sf-title">⚠️ 이런 시도들, 해보셨나요?</p>
+      <div class="sf-items">
+        <div class="sf-item"><span class="sf-x">✕</span><span>심리 상담 → 과거를 이야기하다 끝남. 앞으로 어떻게 해야 할지 여전히 막막</span></div>
+        <div class="sf-item"><span class="sf-x">✕</span><span>MBTI 검사 → 재미있었지만, 실제 관계에서 어떻게 써야 할지 모르겠음</span></div>
+        <div class="sf-item"><span class="sf-x">✕</span><span>자기계발 책 → 읽을 땐 공감됐는데, 막상 내 상황에 적용이 안 됨</span></div>
+        <div class="sf-item"><span class="sf-x">✕</span><span>커뮤니케이션 강의 → 스킬은 배웠는데, 근본적인 패턴이 바뀌지 않음</span></div>
+      </div>
+    </div>
+
+    <div class="sol-answer">
+      <p class="sa-title">✓ 에니어그램이 다른 이유</p>
+      <p class="sa-text">에니어그램은 행동 방식이 아닌 <strong>동기의 구조</strong>를 다룹니다. 왜 그 행동이 나오는지, 어릴 때 어떤 경험이 지금의 패턴을 만들었는지를 이해하면 — 스킬 없이도 관계가 바뀝니다. <strong>이해 자체가 치유이기 때문입니다.</strong></p>
+    </div>
+
+    <h3 style="font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;margin-bottom:20px;color:var(--ink);">8개월 동안 이렇게 변화합니다</h3>
+    <div class="sol-steps">
+      <div class="sol-step">
+        <div class="ss-num">1</div>
+        <div class="ss-body">
+          <div class="ss-title">나를 이해하는 언어 생기기</div>
+          <div class="ss-desc">내가 왜 이런 반응을 하는지, 어떤 두려움이 작동하는지 처음으로 이해합니다</div>
+        </div>
+      </div>
+      <div class="sol-step">
+        <div class="ss-num">2</div>
+        <div class="ss-body">
+          <div class="ss-title">상대를 읽는 눈이 생기기</div>
+          <div class="ss-desc">나쁜 사람이 아니라 '다른 유형'이라는 걸 알게 되면 갈등이 다르게 보입니다</div>
+        </div>
+      </div>
+      <div class="sol-step">
+        <div class="ss-num">3</div>
+        <div class="ss-body">
+          <div class="ss-title">자동반응에서 선택으로</div>
+          <div class="ss-desc">예전엔 폭발하거나 침묵했다면, 이제는 어떻게 반응할지 선택할 수 있게 됩니다</div>
+        </div>
+      </div>
+      <div class="sol-step">
+        <div class="ss-num">4</div>
+        <div class="ss-body">
+          <div class="ss-title">그룹 안에서 실습</div>
+          <div class="ss-desc">6명의 소그룹 안에서 직접 경험하며 체화합니다. 강의만 듣는 게 아닙니다</div>
+        </div>
+      </div>
+      <div class="sol-step">
+        <div class="ss-num">5</div>
+        <div class="ss-body">
+          <div class="ss-title">8개월의 긴 호흡</div>
+          <div class="ss-desc">월 1회, 8개월에 걸쳐 진행하기 때문에 일상에 적용하고 돌아올 시간이 있습니다</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ VALUE ══════════════════════════ -->
+<section class="sec value-sec">
+  <div class="wrap">
+    <p class="sec-eye" style="color:var(--gold3);">변화 전 vs 후</p>
+    <h2 class="sec-h">8개월 후<br><em>당신의 달라진 하루</em></h2>
+
+    <div class="val-compare">
+      <div class="vc before">
+        <div class="vc-label">BEFORE · 코칭 전</div>
+        <div class="vc-item"><span class="vc-dot">✕</span> 갈등이 생기면 무조건 피하거나 폭발</div>
+        <div class="vc-item"><span class="vc-dot">✕</span> "내가 예민한 건지, 상대가 이상한 건지" 혼란</div>
+        <div class="vc-item"><span class="vc-dot">✕</span> 같은 패턴의 관계 실패가 반복됨</div>
+        <div class="vc-item"><span class="vc-dot">✕</span> 내가 원하는 게 뭔지조차 모름</div>
+        <div class="vc-item"><span class="vc-dot">✕</span> 열심히 사는데 왜 이렇게 소진될까</div>
+      </div>
+      <div class="vc after">
+        <div class="vc-label">AFTER · 코칭 후</div>
+        <div class="vc-item"><span class="vc-dot" style="color:var(--gold3);">✓</span> 갈등 상황에서 나의 패턴을 알아차리고 선택</div>
+        <div class="vc-item"><span class="vc-dot" style="color:var(--gold3);">✓</span> 상대가 왜 저러는지 이해하는 언어 생김</div>
+        <div class="vc-item"><span class="vc-dot" style="color:var(--gold3);">✓</span> 관계에서 소진되지 않는 나만의 경계선</div>
+        <div class="vc-item"><span class="vc-dot" style="color:var(--gold3);">✓</span> 내 욕구와 가치를 말로 표현할 수 있게 됨</div>
+        <div class="vc-item"><span class="vc-dot" style="color:var(--gold3);">✓</span> "나답다"는 감각이 생긴 삶</div>
+      </div>
+    </div>
+
+    <p style="color:rgba(255,255,255,0.5);font-size:13px;margin-bottom:16px;text-align:center;">이 코칭에서 받게 될 것들</p>
+    <div class="val-stack">
+      <div class="vs-row">
+        <span class="vs-name">에니어그램 정밀 진단 + 개인 리포트</span>
+        <span class="vs-price">5만원 상당</span>
+      </div>
+      <div class="vs-row">
+        <span class="vs-name">월 1회 × 8회 4시간 심층 코칭 세션</span>
+        <span class="vs-price">개인 코칭 기준 160만원</span>
+      </div>
+      <div class="vs-row">
+        <span class="vs-name">매회 액티비티 자료 + 워크시트</span>
+        <span class="vs-price">포함</span>
+      </div>
+      <div class="vs-row">
+        <span class="vs-name">소그룹 나눔 + 피드백 (6인 이하)</span>
+        <span class="vs-price">포함</span>
+      </div>
+      <div class="vs-row">
+        <span class="vs-name">에니어그램 추천 도서 가이드</span>
+        <span class="vs-price">포함</span>
+      </div>
+      <div class="vs-row total">
+        <span class="vs-name">실제 가치 합산</span>
+        <span class="vs-price">→ 80만원에 제공</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ PROGRAM ══════════════════════════ -->
+<section class="sec program-sec">
+  <div class="wrap-wide">
+    <div class="wrap" style="padding:0;">
+      <p class="sec-eye">프로그램 정보</p>
+      <h2 class="sec-h">코칭 <em>상세 안내</em></h2>
+    </div>
+
+    <div style="max-width:760px;margin:0 auto;padding:0 32px;">
+      <div class="prog-info">
+        <div class="pi">
+          <div class="pi-key">형태</div>
+          <div class="pi-val">오프라인 그룹 코칭 <em>(홍대입구역 근처)</em></div>
+        </div>
+        <div class="pi">
+          <div class="pi-key">정원</div>
+          <div class="pi-val">소수정예 6인 이하</div>
+        </div>
+        <div class="pi">
+          <div class="pi-key">일정</div>
+          <div class="pi-val">월 1회, 총 8회 <em>(8개월)</em></div>
+        </div>
+        <div class="pi">
+          <div class="pi-key">시간</div>
+          <div class="pi-val">회당 4시간 <em>토·일 2~6PM</em></div>
+        </div>
+        <div class="pi">
+          <div class="pi-key">참가비</div>
+          <div class="pi-val">80만원 <em>(8회 전체)</em></div>
+        </div>
+        <div class="pi">
+          <div class="pi-key">대상</div>
+          <div class="pi-val">자기탐색·정서회복이 필요한 20~30대</div>
+        </div>
+      </div>
+
+      <h3 style="font-family:'Noto Serif KR',serif;font-size:20px;font-weight:700;margin-bottom:16px;color:var(--ink);">8회차 커리큘럼</h3>
+      <div class="curriculum">
+        <div class="curr-row">
+          <div class="curr-num"><span class="curr-nth">1회차</span>자기 이해</div>
+          <div class="curr-body">
+            <div class="curr-title">나를 만나는 첫걸음 — 에니어그램의 세계</div>
+            <div class="curr-desc">에니어그램 성격검사 + 자가 리포트 작성 · 유형별 소그룹 자기소개</div>
+          </div>
+        </div>
+        <div class="curr-row">
+          <div class="curr-num"><span class="curr-nth">2회차</span>감정과 욕구</div>
+          <div class="curr-body">
+            <div class="curr-title">감정과 욕구의 미로 속에서</div>
+            <div class="curr-desc">감정 일기 쓰기 & 연극적 재연 · 억눌린 감정을 표현하는 연습</div>
+          </div>
+        </div>
+        <div class="curr-row">
+          <div class="curr-num"><span class="curr-nth">3회차</span>방어기제</div>
+          <div class="curr-body">
+            <div class="curr-title">나의 방어기제와 두려움</div>
+            <div class="curr-desc">핵심 두려움 시각화 · 나의 감정 마인드 맵 그리기</div>
+          </div>
+        </div>
+        <div class="curr-row">
+          <div class="curr-num"><span class="curr-nth">4회차</span>내면 아이</div>
+          <div class="curr-body">
+            <div class="curr-title">어릴 적 나를 만나다</div>
+            <div class="curr-desc">내 안의 어린 나에게 편지쓰기 · 핵심 상처와 패턴 탐색</div>
+          </div>
+        </div>
+        <div class="curr-row">
+          <div class="curr-num"><span class="curr-nth">5회차</span>자기 수용</div>
+          <div class="curr-body">
+            <div class="curr-title">자기를 수용하는 마음 — 자기연민과 회복</div>
+            <div class="curr-desc">자기 연민 명상 + 위로 편지 쓰기 · 자기비판에서 자기수용으로</div>
+          </div>
+        </div>
+        <div class="curr-row">
+          <div class="curr-num"><span class="curr-nth">6회차</span>관계 설계</div>
+          <div class="curr-body">
+            <div class="curr-title">나와 타인의 관계 — 자동반응 깨뜨리기</div>
+            <div class="curr-desc">역할 바꾸기 대화 연습 · 유형별 대인관계 패턴과 날개 이해</div>
+          </div>
+        </div>
+        <div class="curr-row">
+          <div class="curr-num"><span class="curr-nth">7회차</span>변화</div>
+          <div class="curr-body">
+            <div class="curr-title">변화의 문 앞에서 — 통합과 퇴행</div>
+            <div class="curr-desc">통합된 나의 모습 에세이 · 변화된 자아상 구체화</div>
+          </div>
+        </div>
+        <div class="curr-row">
+          <div class="curr-num"><span class="curr-nth">8회차</span>통합</div>
+          <div class="curr-body">
+            <div class="curr-title">새로운 나로 살아가기 — 통합과 실천</div>
+            <div class="curr-desc">나에게 주는 선언문 만들기 · 전체 변화 여정 발표 및 나눔</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ SCARCITY ══════════════════════════ -->
+<section class="sec scarcity-sec">
+  <div class="wrap">
+    <p class="sec-eye">3기 모집 현황</p>
+    <h2 class="sec-h">지금 결정해야 하는<br><em>3가지 이유</em></h2>
+
+    <div class="scar-box">
+      <div class="scar-head">
+        <span style="font-size:16px;">📍</span>
+        <span class="scar-head-text">3기 (2025.03.28 ~ 2025.10.24) · 실시간 모집 현황</span>
+      </div>
+      <div class="scar-body">
+
+        <div class="spots-row">
+          <div class="spot taken">
+            <div class="spot-label">마감</div>
+            <div class="spot-val">1석</div>
+          </div>
+          <div class="spot taken">
+            <div class="spot-label">마감</div>
+            <div class="spot-val">2석</div>
+          </div>
+          <div class="spot open">
+            <div class="spot-label">잔여</div>
+            <div class="spot-val">3석</div>
+          </div>
+          <div class="spot open">
+            <div class="spot-label">잔여</div>
+            <div class="spot-val">4석</div>
+          </div>
+          <div class="spot open">
+            <div class="spot-label">잔여</div>
+            <div class="spot-val">5석</div>
+          </div>
+          <div class="spot open">
+            <div class="spot-label">잔여</div>
+            <div class="spot-val">6석</div>
+          </div>
+        </div>
+
+        <div class="scar-items">
+          <div class="si">
+            <span class="si-icon">⚠️</span>
+            <span><strong>정원 6인 엄수.</strong> 소수정예 그룹의 깊이를 유지하기 위해 추가 모집이 없습니다. 현재 2석 마감, 잔여 4석입니다.</span>
+          </div>
+          <div class="si">
+            <span class="si-icon">📅</span>
+            <span><strong>3기가 끝나면 다음 기수는 2026년 이후.</strong> 연 1회 운영을 원칙으로 합니다. 지금 놓치면 최소 1년을 기다려야 합니다.</span>
+          </div>
+          <div class="si">
+            <span class="si-icon">🔑</span>
+            <span><strong>3기는 이미 1회차(3/28)가 시작되었습니다.</strong> 현재 2회차(4/25) 이후 합류 가능하며, 추가 모집은 5월 초 마감 예정입니다.</span>
+          </div>
+          <div class="si">
+            <span class="si-icon">💳</span>
+            <span><strong>환불정책 있음.</strong> 결제 후 7일 이내, 1회차 시작 전이라면 전액 환불 가능합니다. 부담 없이 시작하세요.</span>
+          </div>
+        </div>
+
+        <div class="scar-deadline">
+          추가 모집 마감 예정 <strong>2025년 5월 초</strong> · 이후 신청 불가
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ TESTIMONIALS ══════════════════════════ -->
+<section class="sec testi-sec">
+  <div class="wrap">
+    <p class="sec-eye">수료자 후기</p>
+    <h2 class="sec-h">1기·2기 수료자들이<br>직접 남긴 말</h2>
+
+    <div class="testi-grid">
+
+      <div class="testi">
+        <p class="testi-text">처음엔 솔직히 반신반의했어요. 에니어그램을 이미 유튜브에서 보고 알고 있었거든요. 근데 직접 참여하면서 든 생각은, <strong>'아, 아는 것과 체화하는 건 완전히 다르구나'</strong>였습니다. 특히 소그룹 나눔 시간이 저한테는 제일 컸어요. 나랑 다른 유형의 사람이 똑같은 상황을 어떻게 다르게 느끼는지를 직접 들으니까, 이론이 살아나더라고요.</p>
+        <div class="testi-meta">
+          <div class="testi-avatar">이</div>
+          <div>
+            <div class="testi-name">이○○ (31세, 프리랜서)</div>
+            <div class="testi-cohort">1기 수료</div>
+          </div>
+          <div class="stars" style="margin-left:auto;">★★★★★</div>
+        </div>
+      </div>
+
+      <div class="testi">
+        <p class="testi-text">남편과의 관계 때문에 신청했는데, 결국 저 자신이 바뀌는 경험을 했습니다. <strong>남편을 바꾸려 했던 게 얼마나 헛된 시도였는지</strong>를 깨달았고, 저의 반응 패턴을 바꾸니까 남편도 달라지더라고요. 8개월이 길다고 생각했는데, 오히려 그 긴 호흡이 진짜 변화를 만들어줬어요.</p>
+        <div class="testi-meta">
+          <div class="testi-avatar">김</div>
+          <div>
+            <div class="testi-name">김○○ (34세, 직장인)</div>
+            <div class="testi-cohort">1기 수료</div>
+          </div>
+          <div class="stars" style="margin-left:auto;">★★★★★</div>
+        </div>
+      </div>
+
+      <div class="testi">
+        <p class="testi-text">리더십 코칭이나 커뮤니케이션 강의를 몇 번 들었는데, 스킬은 알겠는데 왜인지 안 되는 거예요. 이 코칭은 달랐어요. <strong>스킬보다 나의 '작동 방식'을 먼저 이해하게 해줬거든요.</strong> 내가 왜 저 사람한테 이렇게 반응하는지를 알고 나니, 굳이 스킬을 배우지 않아도 관계가 부드러워졌습니다.</p>
+        <div class="testi-meta">
+          <div class="testi-avatar">박</div>
+          <div>
+            <div class="testi-name">박○○ (29세, 스타트업 팀장)</div>
+            <div class="testi-cohort">2기 수료</div>
+          </div>
+          <div class="stars" style="margin-left:auto;">★★★★★</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ INSTRUCTOR ══════════════════════════ -->
+<section class="sec instructor-sec">
+  <div class="wrap">
+    <p class="sec-eye">강사 소개</p>
+    <h2 class="sec-h">믿고 맡길 수 있는<br>강사인가요?</h2>
+
+    <div class="instr-card">
+      <div class="instr-avatar" style="overflow:hidden;padding:0"><img src="/instructor.png" alt="강사 사진" style="width:100%;height:100%;object-fit:cover;"></div>
+      <div>
+        <div class="instr-name">에니어시온</div>
+        <div class="instr-title">에니어그램 코칭 전문 강사</div>
+        <div class="instr-creds">
+          <div class="ic"><span class="ic-dot">▸</span> 한국에니어그램협회 공인 강사 자격 보유</div>
+          <div class="ic"><span class="ic-dot">▸</span> 에니어그램 연구 15년, 관련 세미나 1,000만원 이상 투자한 덕후</div>
+          <div class="ic"><span class="ic-dot">▸</span> 국내 에니어그램 관련 논문 & 서적 다수 섭렵</div>
+          <div class="ic"><span class="ic-dot">▸</span> 유튜브 채널 <에니어시온> 운영 (구독자 5,000명+)</div>
+          <div class="ic"><span class="ic-dot">▸</span> 1기·2기 그룹 코칭 완료, 3기 현재 진행 중</div>
+        </div>
+        <div class="instr-bio">단순히 자격증을 보유한 강사가 아닙니다. 에니어그램을 삶의 언어로 삼고 15년을 파고든 사람입니다. 세미나에 1,000만원 이상을 투자했고, 국내에 번역된 에니어그램 서적은 모두 읽었습니다. 그 깊이가 이 코칭의 차이를 만듭니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ SCHEDULE ══════════════════════════ -->
+<section class="sec schedule-sec">
+  <div class="wrap">
+    <p class="sec-eye">3기 일정</p>
+    <h2 class="sec-h">3기 <em>전체 일정</em></h2>
+
+    <div class="schedule-box">
+      <div class="sch-head">
+        <span>3기 · 8회기 (모집 정원 6명)</span>
+        <span class="sch-badge open">▶ 모집 중 · 잔여 4석</span>
+      </div>
+      <div class="sch-sessions">
+        <div class="sch-s">
+          <div class="sch-s-n">1회차</div>
+          <div class="sch-s-date">3/28 토</div>
+          <div class="sch-s-time">2~6PM</div>
+        </div>
+        <div class="sch-s">
+          <div class="sch-s-n">2회차</div>
+          <div class="sch-s-date">4/25 토</div>
+          <div class="sch-s-time">2~6PM</div>
+        </div>
+        <div class="sch-s">
+          <div class="sch-s-n">3회차</div>
+          <div class="sch-s-date">5/23 토</div>
+          <div class="sch-s-time">2~6PM</div>
+        </div>
+        <div class="sch-s">
+          <div class="sch-s-n">4회차</div>
+          <div class="sch-s-date">6/20 토</div>
+          <div class="sch-s-time">2~6PM</div>
+        </div>
+        <div class="sch-s">
+          <div class="sch-s-n">5회차</div>
+          <div class="sch-s-date">7/18 토</div>
+          <div class="sch-s-time">2~6PM</div>
+        </div>
+        <div class="sch-s">
+          <div class="sch-s-n">6회차</div>
+          <div class="sch-s-date">8/22 토</div>
+          <div class="sch-s-time">2~6PM</div>
+        </div>
+        <div class="sch-s">
+          <div class="sch-s-n">7회차</div>
+          <div class="sch-s-date">9/19 토</div>
+          <div class="sch-s-time">2~6PM</div>
+        </div>
+        <div class="sch-s">
+          <div class="sch-s-n">8회차</div>
+          <div class="sch-s-date">10/24 토</div>
+          <div class="sch-s-time">2~6PM</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:white;border:1px solid var(--border);border-radius:4px;padding:20px 24px;font-size:13px;color:var(--ink3);line-height:2;">
+      <strong style="color:var(--ink);display:block;margin-bottom:6px;">📌 3기 추가 합류 가능 여부</strong>
+      현재 3기는 1회차(3/28)가 시작되었습니다. 2회차(4/25) 이전까지 합류 가능하며, 1회차 자료와 워크시트를 별도로 제공해드립니다. 합류를 희망하시는 분은 오픈카톡으로 먼저 문의 주세요.
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ FAQ ══════════════════════════ -->
+<section class="sec" style="background:var(--paper2);">
+  <div class="wrap">
+    <p class="sec-eye">자주 묻는 질문</p>
+    <h2 class="sec-h">신청 전<br>확인해보세요</h2>
+
+    <div class="faq-items">
+      <div class="faq-item open">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">에니어그램을 전혀 몰라도 참여할 수 있나요?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">네, 전혀 몰라도 됩니다. 1회차에서 기초부터 시작하며, 직접 진단 검사를 통해 자신의 유형을 찾아가는 과정이 포함되어 있습니다. 오히려 선입견 없이 오시는 분들이 더 열린 마음으로 받아들이시는 경우가 많습니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">오프라인 참여가 어렵습니다. 온라인으로도 가능한가요?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">현재 3기는 오프라인(홍대입구역 근처) 전용으로 운영됩니다. 소그룹 나눔, 연극 활동, 명상 등의 액티비티가 오프라인 환경에서 가장 효과적이기 때문입니다. 온라인 코칭 계획은 추후 별도 공지로 안내드릴 예정입니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">한 회기를 빠지면 어떻게 되나요?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">개인 사정으로 불참 시 환불이나 일정 변경이 어렵습니다. 다만, 해당 회차의 자료와 워크시트는 별도로 제공됩니다. 8개월의 긴 호흡인 만큼, 최대한 일정을 확인하고 신청하시길 권장드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">환불은 어떻게 되나요?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">결제 후 7일 이내, 첫 세션 시작 전이라면 전액 환불 가능합니다. 결제 후 7일 초과 또는 오리엔테이션 자료 제공 후는 10% 위약금 공제 후 환불됩니다. 1회차 진행 후 24시간 이내는 잔여 회기의 80% 환불, 3회기 이후는 50%, 4회기 이상 진행 후는 환불이 불가합니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">이 코칭은 심리 상담인가요?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">아닙니다. 본 프로그램은 상담이 아닌 교육·코칭 프로그램입니다. 자기탐색과 인간관계 이해를 목적으로 하며, 임상적 치료는 제공하지 않습니다. 심리적으로 매우 취약한 상태이신 분은 전문 상담사와 먼저 상담하시길 권장드립니다.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">
+          <span class="faq-q-text">참여에 필요한 준비물이 있나요?</span>
+          <span class="faq-toggle">+</span>
+        </div>
+        <div class="faq-a">별도 준비물은 없습니다. 매회 필요한 자료와 워크시트가 제공됩니다. 다만, 매월 주차별 워크시트를 작성해오는 과제가 있으며, 과제를 글로 작성하고 공유·발표할 의향이 없으신 분은 참여가 제한됩니다.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════ CTA ══════════════════════════ -->
+<section class="cta-sec" id="apply">
+  <p class="sec-eye" style="color:var(--gold3);">지금 신청하세요</p>
+  <h2 class="sec-h">관계가 바뀌면<br>삶이 바뀝니다</h2>
+  <p class="cta-sub">잔여 4석 · 5월 초 추가 모집 마감 · 다음 기수는 2026년 이후</p>
+
+  <div class="cta-price-box">
+    <div class="cta-orig">개인 코칭 상당 가치 160만원+</div>
+    <div class="cta-price">80만원</div>
+    <div class="cta-per">8회 전체 / 1회당 10만원</div>
+  </div>
+
+  <br>
+
+  <a href="https://open.kakao.com/o/sT48fqrh" class="cta-btn">오픈카톡으로 신청 문의하기 →</a>
+  <p class="cta-btn-sub">버튼 클릭 → 오픈카톡 문의 → 안내 후 결제 / 영업일 1일 내 답변</p>
+
+  <div class="cta-guarantees">
+    <div class="cg"><span class="cg-icon">✓</span> 7일 이내 전액 환불 보장</div>
+    <div class="cg"><span class="cg-icon">✓</span> 소수정예 6인 한정</div>
+    <div class="cg"><span class="cg-icon">✓</span> 협회 공인 강사</div>
+    <div class="cg"><span class="cg-icon">✓</span> 1기·2기 전원 수료</div>
+  </div>
+</section>
+
+<footer>
+  에니어그램 Self-Master 코칭 | 에니어시온<br>
+  문의: 오픈카톡 채널 | 본 프로그램은 교육·코칭 프로그램이며 의료·심리상담을 대체하지 않습니다.
+</footer>
+
+<script>
+function toggleFaq(el) {
+  el.parentElement.classList.toggle('open');
+}
+// Close all other FAQs when one opens
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', function() {
+    const current = this.parentElement;
+    document.querySelectorAll('.faq-item').forEach(item => {
+      if (item !== current) item.classList.remove('open');
+    });
+  });
+});
+</script>
+
+</body>
+</html>
