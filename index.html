@@ -1325,6 +1325,37 @@
           box-shadow: 0 0 0 6px rgba(184, 146, 42, 0);
         }
       }
+
+      /* Coaching application */
+      #coaching-application { scroll-margin-top: 24px; padding: 72px 20px; }
+      .application-card { max-width: 680px; margin: 0 auto; background: white; border: 1px solid var(--border2); }
+      .application-heading { padding: 20px 28px; background: var(--ink); color: white; font-size: 22px; }
+      .application-form { padding: 28px; }
+      .application-form fieldset { border: 0; padding: 0; margin: 0 0 28px; min-width: 0; }
+      .application-form legend { width: 100%; padding-bottom: 10px; margin-bottom: 18px; border-bottom: 1px solid var(--border2); color: var(--ink3); font-weight: 700; }
+      .application-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+      .application-field { display: block; margin-bottom: 18px; font-weight: 700; }
+      .application-grid .application-field { margin-bottom: 0; }
+      .application-field span { color: var(--gold); }
+      .application-field input, .application-field textarea, .application-field select, #application-text { display: block; width: 100%; margin-top: 8px; padding: 12px 14px; border: 1px solid var(--border2); border-radius: 3px; background: var(--paper); color: var(--ink2); font: inherit; font-weight: 400; }
+      .application-field textarea { resize: vertical; min-height: 100px; }
+      .application-field :focus-visible, #application-text:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+      .application-submit, .application-copy, .application-chat { display: block; width: 100%; border: 0; border-radius: 3px; padding: 16px; font: inherit; font-weight: 700; text-align: center; cursor: pointer; text-decoration: none; }
+      .application-submit { background: var(--gold2); color: var(--ink); }
+      .application-note { font-size: 13px; color: var(--ink3); margin: 12px 0; }
+      #application-result { margin: auto; width: min(580px, calc(100% - 28px)); max-height: 90vh; padding: 0; border: 1px solid var(--border2); border-radius: 6px; color: var(--ink); background: white; }
+      #application-result::backdrop { background: rgba(26,20,16,.65); }
+      .application-result-header { display: flex; align-items: center; justify-content: space-between; padding: 18px 22px; border-bottom: 1px solid var(--border); gap: 12px; }
+      .application-result-header h2 { font-size: 18px; }
+      .application-close { border: 0; background: var(--paper2); color: var(--ink3); border-radius: 50%; width: 36px; height: 36px; cursor: pointer; font-size: 22px; flex-shrink: 0; }
+      .application-result-body { padding: 22px; }
+      .application-instructions { padding: 18px; background: var(--gold-light); border: 1px solid var(--gold3); margin-bottom: 20px; }
+      .application-instructions ol { padding-left: 22px; margin-top: 10px; }
+      #application-text { height: 200px; resize: vertical; margin-bottom: 20px; }
+      .application-copy { background: var(--paper2); color: var(--ink); border: 1px solid var(--border2); }
+      .application-chat { background: #fee500; color: var(--ink); margin-top: 10px; }
+      #copy-status { min-height: 1.8em; margin-top: 8px; font-size: 14px; color: var(--ink3); }
+      @media (max-width: 520px) { .application-grid { grid-template-columns: 1fr; } .application-form { padding: 22px; } .application-heading { padding: 18px 22px; font-size: 20px; } }
     </style>
   </head>
   <body>
@@ -1334,15 +1365,9 @@
         <strong>4기 잔여 2석</strong> · 소수 정원 마감 임박
       </div>
       <a
-        href="#apply"
+        href="#coaching-application"
         class="sticky-btn"
-        onclick="
-          document
-            .getElementById('apply')
-            .scrollIntoView({ behavior: 'smooth' })
-          return false
-        "
-        >4기 신청하기 →</a
+        >4기 그룹 코칭 신청하기 →</a
       >
     </div>
 
@@ -1382,15 +1407,9 @@
       </div>
 
       <a
-        href="#apply"
+        href="#coaching-application"
         class="hero-cta"
-        onclick="
-          document
-            .getElementById('apply')
-            .scrollIntoView({ behavior: 'smooth' })
-          return false
-        "
-        >4기 신청하기</a
+        >4기 그룹 코칭 신청하기</a
       >
       <span class="hero-cta-sub"
         >12/26 OT · 1/2 정규 코칭 시작 · 총 160만원(세금 포함)</span
@@ -2253,11 +2272,11 @@
 
       <br />
 
-      <a href="https://open.kakao.com/o/sT48fqrh" class="cta-btn"
-        >오픈카톡으로 4기 신청하기 →</a
+      <a href="#coaching-application" class="cta-btn"
+        >4기 그룹 코칭 신청하기 →</a
       >
       <p class="cta-btn-sub">
-        잔여 2석 · 오픈카톡에서 남은 자리와 일정 확인 후 신청하세요
+        신청서를 작성한 후 내용을 복사해 오픈카톡으로 보내주세요
       </p>
 
       <p class="cta-btn-sub">첫 정규 코칭 진행 이후 환불 불가 · 신청 전 전체 일정과 진행 방식을 확인해 주세요.</p>
@@ -2271,6 +2290,54 @@
       </div>
     </section>
 
+
+    <section id="coaching-application" aria-labelledby="application-heading">
+      <div class="application-card">
+        <h2 class="application-heading" id="application-heading">4기 그룹 코칭 신청서</h2>
+        <form class="application-form" id="coaching-form">
+          <fieldset>
+            <legend>기본 정보</legend>
+            <div class="application-grid">
+              <label class="application-field">성함 <span>*</span><input name="name" autocomplete="name" placeholder="홍길동" required maxlength="100" /></label>
+              <label class="application-field">나이 <span>*</span><input name="age" type="number" min="1" max="120" placeholder="28" required /></label>
+              <label class="application-field">직업 <span>*</span><input name="occupation" placeholder="직장인 / 학생 / 프리랜서 등" required maxlength="200" /></label>
+              <label class="application-field">연락처 <span>*</span><input name="contact" placeholder="카카오톡 ID 또는 전화번호" required maxlength="200" /></label>
+            </div>
+          </fieldset>
+          <fieldset>
+            <legend>코칭 내용</legend>
+            <label class="application-field">현재 가장 고민되는 문제 <span>*</span><textarea name="concern" placeholder="현재 겪고 있는 고민을 적어주세요." required maxlength="5000"></textarea></label>
+            <label class="application-field">언제부터 그 문제가 시작되었나요? <span>*</span><textarea name="onset" placeholder="예) 3년 전쯤부터, 혹은 어릴 때부터…" required maxlength="5000"></textarea></label>
+            <label class="application-field">코칭을 통해 얻고 싶은 것 <span>*</span><textarea name="goal" placeholder="코칭을 통해 이해하거나 바꾸고 싶은 점을 적어주세요." required maxlength="5000"></textarea></label>
+          </fieldset>
+          <fieldset>
+            <legend>에니어그램 경험</legend>
+            <label class="application-field">에니어그램을 접해본 적 있나요?<select name="experience"><option value="">선택해 주세요</option><option>처음 접합니다</option><option>검사를 해본 적 있습니다</option><option>교육이나 코칭을 받아본 적 있습니다</option></select></label>
+          </fieldset>
+          <p class="application-note">입력한 내용은 이 페이지에서 자동 전송·저장되지 않습니다. 제출 후 신청서 텍스트를 복사해 카카오 오픈채팅으로 직접 보내주세요.</p>
+          <button type="submit" class="application-submit">4기 그룹 코칭 신청서 제출하기 →</button>
+        </form>
+      </div>
+    </section>
+    <dialog id="application-result" aria-labelledby="application-result-title">
+      <div class="application-result-header">
+        <h2 id="application-result-title">신청서 작성 완료 — 카카오톡으로 전송해주세요</h2>
+        <button type="button" class="application-close" aria-label="닫기">×</button>
+      </div>
+      <div class="application-result-body">
+        <div class="application-instructions">
+          <strong>신청서를 카카오톡으로 보내는 방법</strong>
+          <ol><li>아래 버튼으로 신청서 텍스트를 복사합니다.</li><li>카카오 오픈채팅으로 이동합니다.</li><li>채팅창에 붙여넣기 후 전송합니다.</li></ol>
+          <p class="application-note">카카오톡에서 전송해야 신청이 접수됩니다.</p>
+        </div>
+        <label for="application-text"><strong>복사할 신청서 내용</strong></label>
+        <textarea id="application-text" readonly></textarea>
+        <button type="button" class="application-copy">신청서 텍스트 복사하기</button>
+        <p id="copy-status" role="status" aria-live="polite"></p>
+        <a class="application-chat" href="https://open.kakao.com/o/sT48fqrh" target="_blank" rel="noopener noreferrer">카카오 오픈채팅으로 이동 후 붙여넣기</a>
+      </div>
+    </dialog>
+
     <footer>
       에니어그램 Self-Master 코칭 | 에니어시온<br />
       문의: 오픈카톡 채널 | 본 프로그램은 교육·코칭 프로그램이며 의료·심리상담을
@@ -2278,6 +2345,33 @@
     </footer>
 
     <script>
+
+      const coachingForm = document.getElementById('coaching-form')
+      const applicationResult = document.getElementById('application-result')
+      const applicationText = document.getElementById('application-text')
+      const copyStatus = document.getElementById('copy-status')
+      coachingForm.addEventListener('submit', (event) => {
+        event.preventDefault()
+        const data = new FormData(coachingForm)
+        const fields = [['성함', 'name'], ['나이', 'age'], ['직업', 'occupation'], ['연락처', 'contact'], ['현재 가장 고민되는 문제', 'concern'], ['문제가 시작된 시기', 'onset'], ['코칭을 통해 얻고 싶은 것', 'goal'], ['에니어그램 경험', 'experience']]
+        applicationText.value = '[에니어그램 4기 그룹 코칭 신청서]\n\n' + fields.map(([label, key]) => label + ': ' + (String(data.get(key) || '').trim() || '미선택')).join('\n\n')
+        copyStatus.textContent = ''
+        applicationResult.showModal()
+      })
+      document.querySelector('.application-close').addEventListener('click', () => applicationResult.close())
+      applicationResult.addEventListener('close', () => coachingForm.querySelector('[type="submit"]').focus({ preventScroll: true }))
+      document.querySelector('.application-copy').addEventListener('click', async () => {
+        try {
+          await navigator.clipboard.writeText(applicationText.value)
+          copyStatus.textContent = '복사했습니다. 오픈채팅에 붙여넣고 전송해주세요.'
+        } catch {
+          applicationText.focus()
+          applicationText.select()
+          applicationText.setSelectionRange(0, applicationText.value.length)
+          copyStatus.textContent = '자동 복사가 지원되지 않습니다. 선택된 내용을 길게 누르거나 Ctrl+C (Mac: ⌘C)로 복사해주세요.'
+        }
+      })
+
       function toggleFaq(el) {
         el.parentElement.classList.toggle('open')
       }
